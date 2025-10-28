@@ -57,30 +57,7 @@ namespace Zadanie_3
 
         private void actBut_Click(object sender, EventArgs e)
         {
-            double capacity, concen;
-            int stacks;
-
-            bool capacityWal = double.TryParse(capacityBox.Text, out capacity);
-            bool concenWal = double.TryParse(concentrationBox.Text, out concen);
-            bool stacksWal = int.TryParse(stacksBox.Text, out stacks);
-
-            //Walidacja programu
-            if (capacity < 0 || concen < 0 || concen > 100)
-            {
-                solutionBox.Text = "Poza zakresem";
-                MessageBox.Show("Pojemność nie może być ujemne, a stężnie musi być w zakrsie 0-100%!", 
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            //Zmienna przechowująca stężenie jako procent 
-            double concenU = concen / 100;
-
-            //Obliczenie
-            double wynik = capacity * concenU;
-
-            //Wyświetlenie wyniku
-            solutionBox.Text = wynik.ToString("F2") + "L";
+            Operation();
         }
 
         private void solutionBox_TextChanged(object sender, EventArgs e)
@@ -122,7 +99,7 @@ namespace Zadanie_3
             Concentration selectconcen = typeConcen.Find(r => r.Name == now);
             if (selectconcen != null)
             {
-                capacityBox.Text = selectconcen.ConcentrationPercent.ToString();
+                concentrationBox    .Text = selectconcen.ConcentrationPercent.ToString();
             }
         }
 
@@ -135,16 +112,65 @@ namespace Zadanie_3
         {
 
         }
-    }
-    public class Vessels
-    {
-        public string Name { get; set; }
-        public double Capacity { get; set; }
+
+        private void solutionBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            capacityBox.Text = "";
+            concentrationBox.Text = "";
+            stacksBox.Text = "1";
+            VassalCB.SelectedIndex = 0;
+            cocenCB.SelectedIndex = 0;
+            solutionBox.Text = "0.00 L";
+            solutionBox2.Text = "0.00 L";
+
+        }
+
+        public void Operation()
+        {
+            double capacity, concen;
+            int stacks;
+
+            bool capacityWal = double.TryParse(capacityBox.Text, out capacity);
+            bool concenWal = double.TryParse(concentrationBox.Text, out concen);
+            bool stacksWal = int.TryParse(stacksBox.Text, out stacks);
+
+            //Waliddacja w razie podania złych pól
+            if (!capacityWal || !concenWal || !stacksWal)
+            {
+                MessageBox.Show("Proszę podać prawidłowe wartości liczbowe w okienkach!",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            //Walidacja programu
+            if (capacity < 0 || concen < 0 || concen > 100 || stacks <= 0)
+            {
+                solutionBox.Text = "Poza zakresem";
+                MessageBox.Show("Dane poza podanym zakresem!\nPojemność nie może być ujemne, a stężnie musi być w zakrsie 0-100%!\nLiczba naczyń musi być dodatnia!",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            //obliczanie lacznej objetosci plynow w naczyniach
+            double suma2 = stacks * capacity;
+
+            //Zmienna przechowująca stężenie jako procent 
+            double concenU = concen / 100;
+
+            //Obliczenie
+            double wynik = suma2 * concenU;
+
+            //Wyświetlenie wyniku
+            //Dla łacznej objetosci plynu
+            solutionBox2.Text = suma2.ToString("F2") + " L";
+            //Dla czystej substancji
+            solutionBox.Text = wynik.ToString("F2") + " L";
+        }
     }
 
-    public class Concentration
-    {
-        public string Name { get; set; }
-        public double ConcentrationPercent { get; set; }
-    }
 }

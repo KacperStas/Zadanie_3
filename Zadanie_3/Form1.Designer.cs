@@ -42,6 +42,9 @@
             this.cocenCB = new System.Windows.Forms.ComboBox();
             this.stacksBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.solutionBox2 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.buttclear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // hellnuh
@@ -97,11 +100,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(611, 148);
+            this.label3.Location = new System.Drawing.Point(561, 148);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 20);
+            this.label3.Size = new System.Drawing.Size(239, 20);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Wynik";
+            this.label3.Text = "Wynik(Objetość w naczyniach)";
             // 
             // solutionBox
             // 
@@ -179,11 +182,42 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "Liczba Sztuk";
             // 
+            // solutionBox2
+            // 
+            this.solutionBox2.Location = new System.Drawing.Point(586, 251);
+            this.solutionBox2.Name = "solutionBox2";
+            this.solutionBox2.Size = new System.Drawing.Size(100, 22);
+            this.solutionBox2.TabIndex = 14;
+            this.solutionBox2.TextChanged += new System.EventHandler(this.solutionBox2_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.Location = new System.Drawing.Point(579, 228);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(209, 20);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Wynik (Czysta substancja)";
+            // 
+            // buttclear
+            // 
+            this.buttclear.Location = new System.Drawing.Point(430, 280);
+            this.buttclear.Name = "buttclear";
+            this.buttclear.Size = new System.Drawing.Size(106, 42);
+            this.buttclear.TabIndex = 16;
+            this.buttclear.Text = "Clear";
+            this.buttclear.UseVisualStyleBackColor = true;
+            this.buttclear.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttclear);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.solutionBox2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.stacksBox);
             this.Controls.Add(this.label5);
@@ -222,6 +256,9 @@
         private System.Windows.Forms.ComboBox cocenCB;
         private System.Windows.Forms.TextBox stacksBox;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox solutionBox2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button buttclear;
     }
 }
 
