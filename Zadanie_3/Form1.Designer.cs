@@ -2,15 +2,10 @@
 {
     partial class Form
     {
-        /// <summary>
-        /// Wymagana zmienna projektanta.
-        /// </summary>
+
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Wyczyść wszystkie używane zasoby.
-        /// </summary>
-        /// <param name="disposing">prawda, jeżeli zarządzane zasoby powinny zostać zlikwidowane; Fałsz w przeciwnym wypadku.</param>
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,12 +15,8 @@
             base.Dispose(disposing);
         }
 
-        #region Kod generowany przez Projektanta formularzy systemu Windows
 
-        /// <summary>
-        /// Metoda wymagana do obsługi projektanta — nie należy modyfikować
-        /// jej zawartości w edytorze kodu.
-        /// </summary>
+
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
@@ -45,6 +36,15 @@
             this.actBut = new System.Windows.Forms.Button();
             this.footerLabel = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.VassalCB = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cocenCB = new System.Windows.Forms.ComboBox();
+            this.stacksBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.solutionBox2 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.buttclear = new System.Windows.Forms.Button();
             this.headerPanel.SuspendLayout();
             this.mainLayout.SuspendLayout();
             this.leftPanel.SuspendLayout();
@@ -99,14 +99,20 @@
             this.mainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.mainLayout.Size = new System.Drawing.Size(800, 360);
             this.mainLayout.TabIndex = 1;
-            // 
-            // leftPanel 
-            // 
+
+            // podstawowe pola (pojemność, stężenie)
             this.leftPanel.Controls.Add(this.label1);
             this.leftPanel.Controls.Add(this.capacityBox);
             this.leftPanel.Controls.Add(this.label2);
             this.leftPanel.Controls.Add(this.concentrationBox);
             this.leftPanel.Controls.Add(this.percLabel);
+            // pola wyboru (typ naczynia, typ roztworu, liczba sztuk)
+            this.leftPanel.Controls.Add(this.label4);
+            this.leftPanel.Controls.Add(this.VassalCB);
+            this.leftPanel.Controls.Add(this.label5);
+            this.leftPanel.Controls.Add(this.cocenCB);
+            this.leftPanel.Controls.Add(this.label6);
+            this.leftPanel.Controls.Add(this.stacksBox);
             this.leftPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftPanel.Location = new System.Drawing.Point(23, 23);
             this.leftPanel.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
@@ -164,11 +170,73 @@
             this.percLabel.TabIndex = 8;
             this.percLabel.Text = "%";
             // 
+            // label4 (Typ naczynia)
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label4.Location = new System.Drawing.Point(12, 170);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 23);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Typ naczynia";
+            // 
+            // VassalCB
+            // 
+            this.VassalCB.FormattingEnabled = true;
+            this.VassalCB.Location = new System.Drawing.Point(16, 200);
+            this.VassalCB.Name = "VassalCB";
+            this.VassalCB.Size = new System.Drawing.Size(160, 24);
+            this.VassalCB.TabIndex = 8;
+            this.VassalCB.SelectedIndexChanged += new System.EventHandler(this.VassalCB_SelectedIndexChanged);
+            // 
+            // label5 (Typ roztworu)
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label5.Location = new System.Drawing.Point(200, 170);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(106, 23);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Typ roztworu";
+            // 
+            // cocenCB
+            // 
+            this.cocenCB.FormattingEnabled = true;
+            this.cocenCB.Location = new System.Drawing.Point(200, 200);
+            this.cocenCB.Name = "cocenCB";
+            this.cocenCB.Size = new System.Drawing.Size(150, 24);
+            this.cocenCB.TabIndex = 10;
+            this.cocenCB.SelectedIndexChanged += new System.EventHandler(this.cocenCB_SelectedIndexChanged);
+            // 
+            // label6 (Liczba sztuk)
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label6.Location = new System.Drawing.Point(12, 240);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(106, 23);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Liczba Sztuk";
+            // 
+            // stacksBox
+            // 
+            this.stacksBox.Location = new System.Drawing.Point(16, 270);
+            this.stacksBox.Name = "stacksBox";
+            this.stacksBox.Size = new System.Drawing.Size(100, 22);
+            this.stacksBox.TabIndex = 12;
+            this.stacksBox.Text = "1";
+            this.stacksBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.stacksBox.TextChanged += new System.EventHandler(this.stacksBox_TextChanged);
+            // 
             // rightPanel
             // 
+            // Wyniki i przyciski akcji
             this.rightPanel.Controls.Add(this.label3);
+            this.rightPanel.Controls.Add(this.solutionBox2);
+            this.rightPanel.Controls.Add(this.label7);
             this.rightPanel.Controls.Add(this.solutionBox);
             this.rightPanel.Controls.Add(this.actBut);
+            this.rightPanel.Controls.Add(this.buttclear);
             this.rightPanel.Controls.Add(this.footerLabel);
             this.rightPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rightPanel.Location = new System.Drawing.Point(405, 23);
@@ -177,27 +245,46 @@
             this.rightPanel.Size = new System.Drawing.Size(372, 314);
             this.rightPanel.TabIndex = 1;
             // 
-            // label3
+            // label3 (Wynik: objętość w naczyniach)
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(561, 148);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label3.Location = new System.Drawing.Point(12, 14);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(239, 20);
+            this.label3.Size = new System.Drawing.Size(210, 23);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Wynik(Objetość w naczyniach)";
+            this.label3.Text = "Wynik (Objętość w naczyniach)";
             // 
-            // solutionBox
+            // solutionBox2 (łączna objętość płynów)
             // 
-            this.solutionBox.Location = new System.Drawing.Point(586, 187);
+            this.solutionBox2.Location = new System.Drawing.Point(16, 44);
+            this.solutionBox2.Name = "solutionBox2";
+            this.solutionBox2.ReadOnly = true;
+            this.solutionBox2.Size = new System.Drawing.Size(120, 22);
+            this.solutionBox2.TabIndex = 14;
+            // 
+            // label7 (Wynik: czysta substancja)
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label7.Location = new System.Drawing.Point(12, 84);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(180, 23);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Wynik (Czysta substancja)";
+            // 
+            // solutionBox (czysta substancja)
+            // 
+            this.solutionBox.Location = new System.Drawing.Point(16, 114);
             this.solutionBox.Name = "solutionBox";
-            this.solutionBox.Size = new System.Drawing.Size(100, 22);
+            this.solutionBox.ReadOnly = true;
+            this.solutionBox.Size = new System.Drawing.Size(120, 22);
             this.solutionBox.TabIndex = 5;
             this.solutionBox.TextChanged += new System.EventHandler(this.solutionBox_TextChanged);
             // 
             // actBut
             // 
-            this.actBut.Location = new System.Drawing.Point(430, 231);
+            this.actBut.Location = new System.Drawing.Point(16, 160);
             this.actBut.Name = "actBut";
             this.actBut.Size = new System.Drawing.Size(106, 42);
             this.actBut.TabIndex = 7;
@@ -205,85 +292,9 @@
             this.actBut.UseVisualStyleBackColor = true;
             this.actBut.Click += new System.EventHandler(this.actBut_Click);
             // 
-            // VassalCB
-            // 
-            this.VassalCB.FormattingEnabled = true;
-            this.VassalCB.Location = new System.Drawing.Point(76, 182);
-            this.VassalCB.Name = "VassalCB";
-            this.VassalCB.Size = new System.Drawing.Size(121, 24);
-            this.VassalCB.TabIndex = 8;
-            this.VassalCB.SelectedIndexChanged += new System.EventHandler(this.VassalCB_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(81, 148);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(107, 20);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Typ naczynia";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(260, 148);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(106, 20);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Typ roztworu";
-            // 
-            // cocenCB
-            // 
-            this.cocenCB.FormattingEnabled = true;
-            this.cocenCB.Location = new System.Drawing.Point(255, 182);
-            this.cocenCB.Name = "cocenCB";
-            this.cocenCB.Size = new System.Drawing.Size(121, 24);
-            this.cocenCB.TabIndex = 10;
-            this.cocenCB.SelectedIndexChanged += new System.EventHandler(this.cocenCB_SelectedIndexChanged);
-            // 
-            // stacksBox
-            // 
-            this.stacksBox.Location = new System.Drawing.Point(433, 184);
-            this.stacksBox.Name = "stacksBox";
-            this.stacksBox.Size = new System.Drawing.Size(100, 22);
-            this.stacksBox.TabIndex = 12;
-            this.stacksBox.Text = "1";
-            this.stacksBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.stacksBox.TextChanged += new System.EventHandler(this.stacksBox_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(430, 148);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(106, 20);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Liczba Sztuk";
-            // 
-            // solutionBox2
-            // 
-            this.solutionBox2.Location = new System.Drawing.Point(586, 251);
-            this.solutionBox2.Name = "solutionBox2";
-            this.solutionBox2.Size = new System.Drawing.Size(100, 22);
-            this.solutionBox2.TabIndex = 14;
-            this.solutionBox2.TextChanged += new System.EventHandler(this.solutionBox2_TextChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label7.Location = new System.Drawing.Point(579, 228);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(209, 20);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Wynik (Czysta substancja)";
-            // 
             // buttclear
             // 
-            this.buttclear.Location = new System.Drawing.Point(430, 280);
+            this.buttclear.Location = new System.Drawing.Point(140, 160);
             this.buttclear.Name = "buttclear";
             this.buttclear.Size = new System.Drawing.Size(106, 42);
             this.buttclear.TabIndex = 16;
@@ -291,31 +302,34 @@
             this.buttclear.UseVisualStyleBackColor = true;
             this.buttclear.Click += new System.EventHandler(this.button1_Click);
             // 
+            // footerLabel (miejsce na ewentualne informacje)
+            // 
+            this.footerLabel.AutoSize = true;
+            this.footerLabel.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.footerLabel.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.footerLabel.Location = new System.Drawing.Point(12, 230);
+            this.footerLabel.Name = "footerLabel";
+            this.footerLabel.Size = new System.Drawing.Size(0, 19);
+            this.footerLabel.TabIndex = 17;
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.buttclear);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.solutionBox2);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.stacksBox);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.cocenCB);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.VassalCB);
-            this.Controls.Add(this.actBut);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.solutionBox);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.concentrationBox);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.capacityBox);
-            this.Controls.Add(this.hellnuh);
+            //headerPanel i mainLayout.
+            this.Controls.Add(this.mainLayout);
+            this.Controls.Add(this.headerPanel);
             this.Name = "Form";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form_Load);
+            this.headerPanel.ResumeLayout(false);
+            this.headerPanel.PerformLayout();
+            this.mainLayout.ResumeLayout(false);
+            this.leftPanel.ResumeLayout(false);
+            this.leftPanel.PerformLayout();
+            this.rightPanel.ResumeLayout(false);
+            this.rightPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -339,14 +353,6 @@
         private System.Windows.Forms.Label percLabel;
         private System.Windows.Forms.Label footerLabel;
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.Label hellnuh;
-        private System.Windows.Forms.TextBox capacityBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox concentrationBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox solutionBox;
-        private System.Windows.Forms.Button actBut;
         private System.Windows.Forms.ComboBox VassalCB;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
