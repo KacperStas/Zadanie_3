@@ -1,33 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing.Drawing2D;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Zadanie_3
 {
-    
-
     public partial class Form : System.Windows.Forms.Form
     {
         private List<Vessels> typeVessel;
         private List<Concentration> typeConcen;
+
+        // pola pomocnicze dla efektów
+        private Timer fadeTimer;
+        private Color actButOriginalBack;
+        private Color buttclearOriginalBack;
+
         public Form()
         {
             InitializeComponent();
+
+            // ustawienie początkowej przezroczystości dla fade-in
+            Opacity = 0.0;
         }
 
-      
-       
         private void Form_Load(object sender, EventArgs e)
         {
             typeData();
             ComboBoxs();
+
+            // start fade-in
+            StartFadeIn();
+
+
+            headerPanel.Paint += HeaderPanel_Paint;
+
+
+            actButOriginalBack = actBut.BackColor;
+            buttclearOriginalBack = buttclear.BackColor;
+
+            actBut.MouseEnter += Button_MouseEnter;
+            actBut.MouseLeave += Button_MouseLeave;
+            buttclear.MouseEnter += Button_MouseEnter;
+            buttclear.MouseLeave += Button_MouseLeave;
+
         }
+
         private void typeData()
         {
             typeVessel = new List<Vessels>
@@ -67,7 +86,9 @@ namespace Zadanie_3
 
         private void VassalCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string now = VassalCB.SelectedItem.ToString();
+            var now = VassalCB.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(now) || now == "Wybierz") return;
+
             Vessels selectvessal = typeVessel.Find(n => n.Name == now);
             if (selectvessal != null)
             {
@@ -77,6 +98,9 @@ namespace Zadanie_3
 
         private void ComboBoxs()
         {
+            VassalCB.Items.Clear();
+            cocenCB.Items.Clear();
+
             VassalCB.Items.Add("Wybierz");
             cocenCB.Items.Add("Wybierz");
 
@@ -95,11 +119,13 @@ namespace Zadanie_3
 
         private void cocenCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string now = cocenCB.SelectedItem.ToString();
+            var now = cocenCB.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(now) || now == "Wybierz") return;
+
             Concentration selectconcen = typeConcen.Find(r => r.Name == now);
             if (selectconcen != null)
             {
-                concentrationBox    .Text = selectconcen.ConcentrationPercent.ToString();
+                concentrationBox.Text = selectconcen.ConcentrationPercent.ToString();
             }
         }
 
@@ -127,7 +153,6 @@ namespace Zadanie_3
             cocenCB.SelectedIndex = 0;
             solutionBox.Text = "0.00 L";
             solutionBox2.Text = "0.00 L";
-
         }
 
         public void Operation()
@@ -171,6 +196,68 @@ namespace Zadanie_3
             //Dla czystej substancji
             solutionBox.Text = wynik.ToString("F2") + " L";
         }
+
+        // ==========================
+        // Efekty UI - implementacja
+        // ==========================
+
+        private void StartFadeIn()
+        {
+            if (fadeTimer != null) return;
+            fadeTimer = new Timer();
+            fadeTimer.Interval = 20;
+            fadeTimer.Tick += FadeTimer_Tick;
+            fadeTimer.Start();
+        }
+
+        private void FadeTimer_Tick(object sender, EventArgs e)
+        {
+            Opacity += 0.04;
+            if (Opacity >= 1.0)
+            {
+                Opacity = 1.0;
+                fadeTimer.Stop();
+                fadeTimer.Tick -= FadeTimer_Tick;
+                fadeTimer = null;
+            }
+        }
+
+        private void HeaderPanel_Paint(object sender, PaintEventArgs e)
+        {
+           
+            var panel = sender as Panel;
+            if (panel == null) return;
+
+            using (var lg = new LinearGradientBrush(panel.ClientRectangle,
+                                                     Color.FromArgb(45, 120, 230),
+                                                     Color.FromArgb(70, 150, 250),
+                                                     LinearGradientMode.Horizontal))
+            {
+                e.Graphics.FillRectangle(lg, panel.ClientRectangle);
+            }
+        }
+
+        private void Button_MouseEnter(object sender, EventArgs e)
+        {
+            var btn = sender as Button;
+            if (btn == null) return;
+
+            
+            btn.BackColor = ControlPaint.Light(btn.BackColor, 0.15f);
+        }
+
+        private void Button_MouseLeave(object sender, EventArgs e)
+        {
+            var btn = sender as Button;
+            if (btn == null) return;
+
+            
+            if (btn == actBut) btn.BackColor = actButOriginalBack;
+            else if (btn == buttclear) btn.BackColor = buttclearOriginalBack;
+            else btn.BackColor = SystemColors.Control;
+        }
+
+
     }
 
 }
